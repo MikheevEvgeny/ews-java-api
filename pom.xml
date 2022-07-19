@@ -76,7 +76,7 @@
         <!-- Eliminates the file encoding warning. Of course, all of your files
             should probably be UTF-8 nowadays. -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <javaLanguage.version>1.6</javaLanguage.version>
+        <javaLanguage.version>1.8</javaLanguage.version>
         <javadoc.doclint.param/>
 
         <!--  Dependencies [BUILD]:  -->
@@ -86,20 +86,19 @@
         <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.5</nexus-staging-maven-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
-        <animal-sniffer-maven-plugin.version>1.14</animal-sniffer-maven-plugin.version>
-        <animal-sniffer-maven-plugin.signature.version>1.1</animal-sniffer-maven-plugin.signature.version>
+        <animal-sniffer-maven-plugin.version>1.15</animal-sniffer-maven-plugin.version>
+        <animal-sniffer-maven-plugin.signature.version>1.0</animal-sniffer-maven-plugin.signature.version>
         <!--  Dependencies [REPORT]:  -->
         <maven-site-plugin.version>3.4</maven-site-plugin.version>
-        <maven-project-info-reports-plugin.version>2.8</maven-project-info-reports-plugin.version>
-        <versions-maven-plugin.version>2.2</versions-maven-plugin.version>
-        <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
-        <maven-surefire-report-plugin.version>2.18.1</maven-surefire-report-plugin.version>
+        <maven-project-info-reports-plugin.version>3.4.0</maven-project-info-reports-plugin.version>
+        <versions-maven-plugin.version>2.11.0</versions-maven-plugin.version>
+        <maven-jxr-plugin.version>3.2.0</maven-jxr-plugin.version>
+        <maven-surefire-report-plugin.version>2.22.2</maven-surefire-report-plugin.version>
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
         <!--  Dependencies [COMPILE]:  -->
-        <httpclient.version>4.4.1</httpclient.version>
-        <httpcore.version>4.4.1</httpcore.version>
+        <httpclient.version>4.5.13</httpclient.version>
+        <httpcore.version>4.4.15</httpcore.version>
         <commons-logging.version>1.2</commons-logging.version>
-        <joda-time.version>2.8</joda-time.version>
         <commons-lang3.version>3.4</commons-lang3.version>
         <commons-io.version>2.4</commons-io.version>
         <!--  Dependencies [TEST]:  -->
@@ -120,60 +119,6 @@
             <properties>
                 <javadoc.doclint.param>-Xdoclint:none</javadoc.doclint.param>
             </properties>
-        </profile>
-        <profile>
-            <!-- maven-checkstyle-plugin required Java 7 or later -->
-            <id>java-7-or-later-profile</id>
-            <activation>
-                <jdk>[1.7,)</jdk>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>${maven-checkstyle-plugin.version}</version>
-                    <configuration>
-                    <failsOnError>true</failsOnError>
-                        <configLocation>google_checks.xml</configLocation>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>checkstyle</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>release-sign-artifacts</id>
-            <activation>
-                <property>
-                    <name>gpg.passphrase</name>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>${maven-gpg-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
     </profiles>
 
@@ -241,12 +186,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>${joda-time.version}</version>
         </dependency>
 
         <dependency>
